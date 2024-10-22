@@ -29,12 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//admin route
-// Route::group(['prefix'=>'admin','middleware'=>'redirectAdminMiddleware'],function(){
-//     Route::get('login',[AdminAuthController::class,'showLoginForm'])->name('admin.login');
-//     Route::post('login',[AdminAuthController::class,'login'])->name('admin.login.post');
-//     Route::post('logout',[AdminAuthController::class,'logout'])->name('admin.logout');
-// });
 
 Route::middleware(redirectAdminMiddleware::class)->prefix('admin')->group(function(){
     Route::get('login',[AdminAuthController::class,'showLoginForm'])->name('admin.login');
